@@ -57,8 +57,9 @@ This was a *huge* project for me. I think, from start to finish, I spend 18 hour
 
 I had two main goals in doing this project:
 
-I wanted to see if programming was an all over positive experience for me. 
-I wanted to write the code myself, and understand the logic behind everything I was writing.
+* I wanted to see if programming was an all over positive experience for me.
+
+* I wanted to write the code myself, and understand the logic behind everything I was writing.
 
 I can certainly say that I accomplished both of my goals with this project. The experience as a whole was a rewarding one. Although there were times that I got insanely frustrated when my code was throwing errors, I was able to take a breather and come back with a different perspective.
 
