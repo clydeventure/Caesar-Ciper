@@ -9,14 +9,14 @@ import string
 import json 
 import os 
 
-def seperateList(message_raw): 
+def seperate_list(message_raw): 
     # This sperates the user's input into a string of individual characters.
     new_list = [] 
     new_list[:] = message_raw 
     message_raw = new_list
     return message_raw
 
-def markCapitals(message_seperate, capitals_list): 
+def mark_capitals(message_seperate, capitals_list): 
     # This will sort the string according to whether or not it is a letter, and whether or not it is capitalized.
     for char in range(len(message_seperate)): 
         if message_seperate[0+char].isalpha() == False: 
@@ -27,12 +27,12 @@ def markCapitals(message_seperate, capitals_list):
             capitals_list.append([message_seperate[0+char].lower(), 2]) 
     return capitals_list 
 
-def createFileName(): 
+def create_file_name(): 
     # This will create a random file name.
     joined_list = ( ''.join(random.choice(string.ascii_uppercase + string.digits) for i in range(6))) 
     return(joined_list)
 
-def encryptMessage(capitals_list, index, file_name):  
+def encrypt_message(capitals_list, index, file_name):  
     # This function will encode the message by cross referencing the fist element of each nested string in the capitals lists with the index.
     # It will then replace the first element of each nested string with the index of the corresponding letter, or keep it is it is not alpha.
     key = random.randint(1, 99)
@@ -48,11 +48,10 @@ def encryptMessage(capitals_list, index, file_name):
         json.dump(final_list, f) 
     with open(f"{file_name}_key.json", "w") as k: 
         json.dump(key, k)
-    print(f"Success! Your encryption code is {file_name}. (Do not lose this code! You will need it to decrypt your file later.")
 
 
         
-def getEncryptedMessage(index): 
+def get_encrypted_message(index): 
     # This will import your key and message files and decrypt the message for you with the key
     translated_list = [] 
     final_list = []
@@ -94,12 +93,14 @@ encrypt_or_decrypt = input("Would you like to encrypt or decrypt a file? (e/d): 
 
 if isinstance(encrypt_or_decrypt, str) == True and encrypt_or_decrypt.lower() == "e":
     message_raw = input("Write the message you want to encrypt: ")
-    message_seperate = seperateList(message_raw) 
-    capitals_list = markCapitals(message_seperate, capitals_list) 
-    file_name = createFileName() 
-    final_list = encryptMessage(capitals_list, index, file_name) 
+    message_seperate = seperate_list(message_raw) 
+    capitals_list = mark_capitals(message_seperate, capitals_list) 
+    file_name = create_file_name() 
+    final_list = encrypt_message(capitals_list, index, file_name) 
+    print(f"Success! Your encryption code is {file_name}. (Do not lose this code! You will need it to decrypt your file later.)")
 elif isinstance(encrypt_or_decrypt, str) == True and encrypt_or_decrypt.lower() == "d":
-    open_file = getEncryptedMessage(index)
+    open_file = get_encrypted_message(index)
+    print(f" Your message is: \n\n {open_file}")
 else:
     print("That is an invalid response")
 
